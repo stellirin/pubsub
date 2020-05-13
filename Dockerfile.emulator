@@ -1,0 +1,13 @@
+FROM google/cloud-sdk:alpine
+
+RUN gcloud components install \
+        beta \
+        pubsub-emulator \
+ && apk --no-cache add \
+        libstdc++ \
+        openjdk11-jre-headless \
+ && rm -rf /root/.cache
+
+EXPOSE 8085
+
+CMD [ "gcloud", "beta", "emulators", "pubsub", "start", "--host-port=0.0.0.0:8085", "--user-output-enabled", "--verbosity=debug", "--log-http" ]
