@@ -1,0 +1,19 @@
+version: "3.8"
+
+networks:
+  default:
+    name: pubsub
+
+services:
+  emulator:
+    build:
+      context: ./
+      dockerfile: Dockerfile.emulator
+  init:
+    build:
+      context: ./
+      dockerfile: Dockerfile.init
+    environment:
+      PUBSUB_EMULATOR_HOST: "emulator:8085"
+      PUBSUB_PROJECT_ID: "my-local-project"
+      PUBSUB_TOPIC_ID: "my-local-topic-01,my-local-topic-02"

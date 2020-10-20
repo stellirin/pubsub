@@ -1,29 +1,28 @@
-FROM alpine
+FROM alpine:3.12
 
 RUN apk add --no-cache \
-        libstdc++ \
-        build-base \
-        linux-headers \
-        python-dev \
-        py-pip \
- && pip install --no-cache-dir \
-        google-cloud-pubsub \
- && apk del --no-cache --purge \
-        build-base \
-        linux-headers \
-        python-dev \
- && rm -rf /root/.cache
+    libstdc++ \
+    build-base \
+    linux-headers \
+    python3-dev \
+    py3-pip \
+    && pip install --no-cache-dir \
+    google-cloud-pubsub \
+    && apk del --no-cache --purge \
+    build-base \
+    linux-headers \
+    python3-dev \
+    && rm -rf /root/.cache
 
 # Required for local python script to init Pub/Sub
 ENV PUBSUB_EMULATOR_HOST localhost:8085
 
 # Set default Pub/Sub values
-ENV PUBSUB_PROJECT_ID project-id
-ENV PUBSUB_TOPIC_ID topic-id
+ENV PUBSUB_PROJECT_ID default
+ENV PUBSUB_TOPIC_ID default
 
-ADD https://raw.githubusercontent.com/GoogleCloudPlatform/python-docs-samples/master/pubsub/cloud-client/publisher.py /publisher.py
+ADD https://raw.githubusercontent.com/googleapis/python-pubsub/master/samples/snippets/publisher.py /publisher.py
 
-# https://raw.githubusercontent.com/eficode/wait-for/master/wait-for
 COPY *.sh /
 
 CMD ["/entrypoint.sh"]
