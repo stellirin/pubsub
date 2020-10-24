@@ -37,7 +37,7 @@ spec:
 
 ## Init Container
 
-PubSub topics on GCP are of the form `projects/project/topics/topic`. The emulator creates topics using the environment variables below:
+PubSub topics on GCP are of the form `projects/project/topics/topic`. PubSub subscriptions on GCP are of the form `projects/project/subscriptions/topic.subscription`. The emulator creates topics and subscriptions using the environment variables below:
 
 ### `PUBSUB_EMULATOR_HOST`
 
@@ -50,6 +50,10 @@ A PubSub project ID.
 ### `PUBSUB_TOPIC_ID`
 
 A PubSub topic ID. May be a comma separated list of topics to create multiple topics.
+
+### `PUBSUB_SUBSCRIPTION_ID`
+
+A PubSub subscription ID. May be a comma separated list of subscriptions to create multiple subscriptions for each topic.
 
 ### Example
 
@@ -64,6 +68,20 @@ initContainers:
             value: "my-local-project"
         - name: PUBSUB_TOPIC_ID
             value: "my-local-topic-01,my-local-topic-02"
+        - name: PUBSUB_SUBSCRIPTION_ID
+            value: "my-local-subscription-01,my-local-subscription-02"
 ```
 
 NOTE: The emulator automaticaly creates a subscription if it doesn't exist when a service asks for it.
+
+### Results
+
+```
+projects/my-local-project/topics/my-local-topic-01
+projects/my-local-project/topics/my-local-topic-02
+
+projects/my-local-project/subscriptions/my-local-topic-01.my-local-subscription-01
+projects/my-local-project/subscriptions/my-local-topic-01.my-local-subscription-02
+projects/my-local-project/subscriptions/my-local-topic-02.my-local-subscription-01
+projects/my-local-project/subscriptions/my-local-topic-02.my-local-subscription-02
+```
