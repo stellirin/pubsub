@@ -20,8 +20,10 @@ ENV PUBSUB_EMULATOR_HOST localhost:8085
 # Set default Pub/Sub values
 ENV PUBSUB_PROJECT_ID default
 ENV PUBSUB_TOPIC_ID default
+ENV PUBSUB_SUBSCRIPTION_ID default
 
 ADD https://raw.githubusercontent.com/googleapis/python-pubsub/master/samples/snippets/publisher.py /publisher.py
+ADD https://raw.githubusercontent.com/googleapis/python-pubsub/master/samples/snippets/subscriber.py /subscriber.py
 
 COPY *.sh /
 
