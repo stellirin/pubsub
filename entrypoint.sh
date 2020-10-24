@@ -26,7 +26,7 @@ do
     for TOPIC in $(topic list)
     do
         # The string itself contains quotes so just escape them here for simplicity
-        if [ ${TOPIC} = \"projects/${PUBSUB_PROJECT_ID}/topics/${TOPIC_ID}\" ]
+        if [ "${TOPIC}" = "\"projects/${PUBSUB_PROJECT_ID}/topics/${TOPIC_ID}\"" ]
         then
             echo "Topic exists: name: ${TOPIC_ID}"
             TOPIC_EXISTS=true
@@ -45,8 +45,7 @@ do
 
         for SUBSCRIPTION in $(subscription list-in-topic ${TOPIC_ID})
         do
-            # The string itself contains quotes so just escape them here for simplicity
-            if [ ${SUBSCRIPTION} = \"projects/${PUBSUB_PROJECT_ID}/subscriptions/${TOPIC_ID}.${SUBSCRIPTION_ID}\" ]
+            if [ "${SUBSCRIPTION}" = "projects/${PUBSUB_PROJECT_ID}/subscriptions/${TOPIC_ID}.${SUBSCRIPTION_ID}" ]
             then
                 echo "Subscription exists: name: ${TOPIC_ID}.${SUBSCRIPTION_ID}"
                 SUBSCRIPTION_EXISTS=true
