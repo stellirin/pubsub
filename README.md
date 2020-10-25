@@ -43,17 +43,25 @@ PubSub topics on GCP are of the form `projects/project/topics/topic`. PubSub sub
 
 The URL to a PubSub emulator.
 
+The default value is `localhost:8085`.
+
 ### `PUBSUB_PROJECT_ID`
 
 A PubSub project ID.
+
+The default value is `default`.
 
 ### `PUBSUB_TOPIC_ID`
 
 A PubSub topic ID. May be a comma separated list of topics to create multiple topics.
 
+The default value is `default`.
+
 ### `PUBSUB_SUBSCRIPTION_ID`
 
 A PubSub subscription ID. May be a comma separated list of subscriptions to create multiple subscriptions for each topic.
+
+The default value is `default`.
 
 ### Example
 
@@ -72,16 +80,16 @@ initContainers:
             value: "my-local-subscription-01,my-local-subscription-02"
 ```
 
-NOTE: The emulator automaticaly creates a subscription if it doesn't exist when a service asks for it.
-
 ### Results
 
-```
-projects/my-local-project/topics/my-local-topic-01
-projects/my-local-project/topics/my-local-topic-02
+The above configuration creates the following topics and subscriptions:
 
+```txt
+projects/my-local-project/topics/my-local-topic-01
 projects/my-local-project/subscriptions/my-local-topic-01.my-local-subscription-01
 projects/my-local-project/subscriptions/my-local-topic-01.my-local-subscription-02
+
+projects/my-local-project/topics/my-local-topic-02
 projects/my-local-project/subscriptions/my-local-topic-02.my-local-subscription-01
 projects/my-local-project/subscriptions/my-local-topic-02.my-local-subscription-02
 ```
