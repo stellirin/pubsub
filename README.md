@@ -32,7 +32,7 @@ spec:
         imagePullPolicy: Always
         ports:
           - name: pubsub
-            containerPort: 8085
+            containerPort: 8080
 ```
 
 ## Init Container
@@ -43,7 +43,7 @@ PubSub topics on GCP are of the form `projects/project/topics/topic`. PubSub sub
 
 The URL to a PubSub emulator.
 
-The default value is `localhost:8085`.
+The default value is `localhost:8080`.
 
 ### `PUBSUB_PROJECT_ID`
 
@@ -71,7 +71,7 @@ initContainers:
       image: stellirin/pubsub:init
       env:
         - name: PUBSUB_EMULATOR_HOST
-            value: "pubsub:8085"
+            value: "pubsub:8080"
         - name: PUBSUB_PROJECT_ID
             value: "my-local-project"
         - name: PUBSUB_TOPIC_ID

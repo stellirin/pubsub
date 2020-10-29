@@ -14,7 +14,7 @@ services:
       context: ./
       dockerfile: Dockerfile.init
     environment:
-      PUBSUB_EMULATOR_HOST: "emulator:8085"
+      PUBSUB_EMULATOR_HOST: "emulator:8080"
       PUBSUB_PROJECT_ID: "my-local-project"
       PUBSUB_TOPIC_ID: "my-local-topic-01,my-local-topic-02"
       PUBSUB_SUBSCRIPTION_ID: "my-local-subscription-01,my-local-subscription-02"

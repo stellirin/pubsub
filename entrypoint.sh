@@ -16,9 +16,6 @@ PUBSUB_TOPIC_ID=$(echo ${PUBSUB_TOPIC_ID} | tr ',' ' ')
 # Split the comma separated subscriptions
 PUBSUB_SUBSCRIPTION_ID=$(echo ${PUBSUB_SUBSCRIPTION_ID} | tr ',' ' ')
 
-# A super dumb attempt at preventing collisions
-sleep $(od -A n -N 2 -t u /dev/urandom | tr -d " " | rev | cut -c 1-1)
-
 for TOPIC_ID in ${PUBSUB_TOPIC_ID}
 do
     TOPIC_EXISTS=false

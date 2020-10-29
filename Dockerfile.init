@@ -15,7 +15,7 @@ RUN apk add --no-cache \
     && rm -rf /root/.cache
 
 # Required for local python script to init Pub/Sub
-ENV PUBSUB_EMULATOR_HOST localhost:8085
+ENV PUBSUB_EMULATOR_HOST localhost:8080
 
 # Set default Pub/Sub values
 ENV PUBSUB_PROJECT_ID default
